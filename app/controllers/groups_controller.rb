@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts.recent  # 倒序
+    @posts = @group.posts.recent.paginate(:page => params[:page], :per_page => 5)  # 倒序
   end
   def new
     @group = Group.new
